@@ -1,0 +1,8 @@
+services:
+    db:
+        image: postgres
+        restart: no 
+        ports:
+            - '${POSTGRES_PORT_HOST}:${POSTGRES_PORT_CONTAINER}'
+        environment:
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
