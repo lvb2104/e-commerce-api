@@ -1,8 +1,19 @@
 services:
     db:
-        image: postgres
-        restart: no 
+        image: mysql
+        restart: no
         ports:
-            - '${POSTGRES_PORT_HOST}:${POSTGRES_PORT_CONTAINER}'
+            - ${MYSQL_LOCAL_PORT}:${MYSQL_DOCKER_PORT}
         environment:
-            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USERNAME}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        restart: no
+        ports:
+            - ${PHPMYADMIN_LOCAL_PORT}:${PHPMYADMIN_DOCKER_PORT}
+        environment:
+            PMA_ARBITRARY: 1

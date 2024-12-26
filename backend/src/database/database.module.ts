@@ -7,14 +7,14 @@ import { ConfigService } from '@nestjs/config';
         // Setup connection to the database
         TypeOrmModule.forRootAsync({
             useFactory: (configService: ConfigService) => ({
-                type: 'postgres',
-                host: configService.getOrThrow('POSTGRES_HOST'),
-                port: configService.getOrThrow('POSTGRES_PORT_HOST'),
-                username: configService.getOrThrow('POSTGRES_USERNAME'),
-                password: configService.getOrThrow('POSTGRES_PASSWORD'),
-                database: configService.getOrThrow('POSTGRES_DATABASE'),
+                type: 'mysql',
+                host: configService.getOrThrow('MYSQL_HOST'),
+                port: configService.getOrThrow('MYSQL_LOCAL_PORT'),
+                username: configService.getOrThrow('MYSQL_USERNAME'),
+                password: configService.getOrThrow('MYSQL_PASSWORD'),
+                database: configService.getOrThrow('MYSQL_DATABASE'),
                 autoLoadEntities: true,
-                synchronize: configService.getOrThrow('POSTGRES_SYNCHRONIZE'),
+                synchronize: configService.getOrThrow('MYSQL_SYNCHRONIZE'),
             }),
             inject: [ConfigService],
         }),
