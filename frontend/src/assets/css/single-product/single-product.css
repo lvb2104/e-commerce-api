@@ -1,0 +1,151 @@
+/* Single Product  */
+.single-product__content {
+  display: flex;
+  gap: 105px;
+}
+
+.single-product__content-left {
+  display: flex;
+  gap: 31px;
+}
+
+.single-product__imgs-small {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.single-product__img-small {
+  background: #F9F1E7;
+  width: 76px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.single-product__img-view {
+  width: 423px;
+  height: 500px;
+  object-fit: contain;
+  background: #F9F1E7;
+  border-radius: 5px;
+}
+
+.single-product__name {
+  font-size: 42px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.single-product__price {
+  margin-top: 6px;
+  font-size: 24px;
+  color: #9F9F9F;
+  font-weight: 500;
+}
+
+.single-product__judge {
+  margin-top: 15px;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.single-product__judge--desc {
+  font-size: 15px;
+  color: #9F9F9F;
+}
+
+.single-product__jusdge-stars {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.single-product__desc {
+  margin-top: 18px;
+  max-width: 424px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.single-product__characteristic {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.single-product__characteristic--size {
+  margin-top: 17px;
+  display: flex;
+  gap: 16px;
+}
+
+.single-product__characteristic--color {
+  margin-top: 17px;
+  display: flex;
+  gap: 16px;
+}
+
+.single-product__button {
+  margin-top: 32px;
+  display: flex;
+  gap: 18px;
+}
+
+.single-product__button-amount {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 123px;
+  height: 64px;
+
+  border: 1px solid #9F9F9F;
+  border-radius: 10px;
+}
+
+.single-product__button-cart, .single-product__button-compare {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 215px;
+  height: 64px;
+  border-radius: 15px;
+  border: 2px solid #000000;
+
+  font-size: 20px;
+  font-weight: 400;
+
+  transition: 0.5s;
+}
+
+.single-product__button-cart:hover {
+  color: #fff;
+  border-color: #E97171;
+}
+
+.single-product__button-compare:hover {
+  color: #fff;
+  border-color: #B88E2F;
+}
+
+
+.single-product__details {
+  display: flex;
+}
+
+.single-product__details-left, .single-product__details-right, .operation {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  font-size: 16px;
+  color: #9F9F9F;
+}
+

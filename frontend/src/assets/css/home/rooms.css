@@ -1,0 +1,37 @@
+/* Rooms  */
+.rooms {
+  padding: 56px 0;
+}
+
+.rooms__top--title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333333;
+}
+
+.rooms__top--desc {
+  font-size: 20px;
+  color: #666666;
+}
+
+.rooms__content {
+  margin-top: 63px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.rooms__content--img {
+  width: 381px;
+  height: 480px;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+.rooms__content--name {
+  margin-top: 30px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333333;
+}

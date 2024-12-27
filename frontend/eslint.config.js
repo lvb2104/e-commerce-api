@@ -6,6 +6,7 @@ export default [
   {
     name: 'app/files-to-lint',
     files: ['**/*.{ts,mts,tsx,vue}'],
+    'vue/multi-word-component-names': 'off',
   },
 
   {

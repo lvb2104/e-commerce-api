@@ -1,0 +1,25 @@
+.button {
+  background: #B88E2F;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.slide:hover,
+.slide:focus {
+  box-shadow: inset 222px 0 0 0 #E97171;
+}
+
+.slide_primary:hover,
+.slide_primary:focus {
+  box-shadow: inset 222px 0 0 0 #B88E2F;
+}
+
+
+.separate {
+  width: 2px;
+  height: 37px;
+  background: #9F9F9F;
+  margin-left: 6px;
+  margin-right: 6px;
+}
