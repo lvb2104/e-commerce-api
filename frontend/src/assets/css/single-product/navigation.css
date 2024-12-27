@@ -1,0 +1,23 @@
+.navigation {
+  padding: 32px 0;
+  background: #F9F1E7;
+  margin-bottom: 32px;
+}
+
+.navigation img {
+  margin-top: 2px;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%)
+}
+
+.navigation__name {
+  color: #9F9F9F;
+}
+
+.navigation__name-of-product {
+  font-size: 16px;
+  color: #000000;
+  font-weight: 600;
+}

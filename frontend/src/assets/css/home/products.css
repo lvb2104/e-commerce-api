@@ -1,0 +1,33 @@
+/* Products  */
+.products {
+  padding-bottom: 60px;
+}
+.products__top {
+  margin-bottom: 32px;
+}
+
+.products__top--title {
+  font-size: 40px;
+  font-weight: 800;
+  color: #3A3A3A;
+}
+
+.products__show-more {
+  width: 245px;
+  margin-top: 32px;
+  padding: 12px 0;
+  border: 1px solid #B88E2F;
+
+  font-style: 16px;
+  font-weight: 800;
+  color: #B88E2F;
+
+  cursor: pointer;
+  transition: 0.4s;
+  border-radius: 2px;
+}
+
+.products__show-more:hover {
+  color: #ffffff;
+  background: #B88E2F;
+}
