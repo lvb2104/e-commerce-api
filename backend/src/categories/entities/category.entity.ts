@@ -1,6 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { CategoryBanner } from '../../category-banners/entities/category-banner.entity';
+import { Item } from '../../items/entities/item.entity';
 
-enum CategoryStatus {
+export enum CategoryStatus {
     Active,
     Inactive,
 }
@@ -32,4 +34,13 @@ export class Category {
         onUpdate: 'CURRENT_TIMESTAMP(6)',
     })
     modified_at: Date;
+
+    @OneToMany(
+        (type) => CategoryBanner,
+        (categoryBanner) => categoryBanner.category,
+    )
+    categoryBanners: CategoryBanner[];
+
+    @OneToMany((type) => Item, (item) => item.category)
+    items: Item[];
 }

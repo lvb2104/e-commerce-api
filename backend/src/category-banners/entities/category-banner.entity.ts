@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Category } from '../../categories/entities/category.entity';
 
 @Entity()
 export class CategoryBanner {
@@ -23,4 +24,7 @@ export class CategoryBanner {
         onUpdate: 'CURRENT_TIMESTAMP(6)',
     })
     modified_at: Date;
+
+    @ManyToOne((type) => Category, (category) => category.categoryBanners)
+    category: Category;
 }
