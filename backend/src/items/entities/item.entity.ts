@@ -1,4 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    Column,
+    Entity,
+    ManyToOne,
+    OneToMany,
+    PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Category } from '../../categories/entities/category.entity';
+import { FlashsaleItem } from '../../flashsale-items/entities/flashsale-item.entity';
+import { ItemImage } from '../../item-images/entities/item-image.entity';
+import { OrderDetail } from '../../order-details/entities/order-detail.entity';
 
 enum ItemStatus {
     Active,
@@ -53,4 +63,16 @@ export class Item {
         onUpdate: 'CURRENT_TIMESTAMP(6)',
     })
     modified_at: Date;
+
+    @ManyToOne((type) => Category, (category) => category.items)
+    category: Category;
+
+    @OneToMany((type) => FlashsaleItem, (flashSaleItem) => flashSaleItem.item)
+    flashSaleItems: FlashsaleItem[];
+
+    @OneToMany((type) => ItemImage, (itemImage) => itemImage.item)
+    itemImages: ItemImage[];
+
+    @OneToMany((type) => OrderDetail, (orderDetail) => orderDetail.item)
+    orderDetails: OrderDetail[];
 }

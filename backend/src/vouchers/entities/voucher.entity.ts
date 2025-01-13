@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Order } from '../../orders/entities/order.entity';
 
 enum VoucherType {
     Shipping,
@@ -49,4 +50,7 @@ export class Voucher {
         onUpdate: 'CURRENT_TIMESTAMP(6)',
     })
     modified_at: Date;
+
+    @OneToMany((type) => Order, (order) => order.voucher)
+    orders: Order[];
 }

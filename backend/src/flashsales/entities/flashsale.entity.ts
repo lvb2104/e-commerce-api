@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { FlashsaleItem } from '../../flashsale-items/entities/flashsale-item.entity';
 
 @Entity()
 export class Flashsale {
@@ -32,4 +33,10 @@ export class Flashsale {
         onUpdate: 'CURRENT_TIMESTAMP(6)',
     })
     modified_at: Date;
+
+    @OneToMany(
+        (type) => FlashsaleItem,
+        (flashSaleItem) => flashSaleItem.flashSale,
+    )
+    flashSaleItems: FlashsaleItem[];
 }
