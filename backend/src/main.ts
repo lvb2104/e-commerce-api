@@ -30,7 +30,7 @@ async function bootstrap() {
     SwaggerModule.setup('api', app, document);
 
     const configService = app.get(ConfigService);
-    const port = configService.get('NEST_APP_PORT') ?? 3000;
+    const port = configService.get('NEST_APP_LOCAL_PORT') ?? 3000;
     await app.listen(port);
 }
 bootstrap();
