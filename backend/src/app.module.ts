@@ -4,16 +4,16 @@ import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import { CacheModule } from './cache/cache.module';
-import { OrdersModule } from './orders/orders.module';
-import { UsersModule } from './users/users.module';
-import { VouchersModule } from './vouchers/vouchers.module';
-import { CategoriesModule } from './categories/categories.module';
-import { FlashsalesModule } from './flashsales/flashsales.module';
-import { FlashsaleItemsModule } from './flashsale-items/flashsale-items.module';
-import { ItemsModule } from './items/items.module';
-import { ItemImagesModule } from './item-images/item-images.module';
-import { CategoryBannersModule } from './category-banners/category-banners.module';
-import { OrderDetailsModule } from './order-details/order-details.module';
+import { OrdersModule } from './modules/orders/orders.module';
+import { UsersModule } from './modules/users/users.module';
+import { VouchersModule } from './modules/vouchers/vouchers.module';
+import { CategoriesModule } from './modules/categories/categories.module';
+import { FlashsalesModule } from './modules/flashsales/flashsales.module';
+import { FlashsaleItemsModule } from './modules/flashsale-items/flashsale-items.module';
+import { ItemsModule } from './modules/items/items.module';
+import { ItemImagesModule } from './modules/item-images/item-images.module';
+import { CategoryBannersModule } from './modules/category-banners/category-banners.module';
+import { OrderDetailsModule } from './modules/order-details/order-details.module';
 
 @Module({
     imports: [
