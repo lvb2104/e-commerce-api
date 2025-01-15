@@ -44,6 +44,17 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+## Implement migrations
+```bash
+# Create migration file
+$ npx typeorm migration:create src/database/migrations/<nameFile>
+
+# Run migration
+$ npx typeorm migration:run -d data-source.ts
+
+# Revert migration
+$ npx typeorm migration:revert -d data-source.ts
+```
 
 ## Run tests
 
