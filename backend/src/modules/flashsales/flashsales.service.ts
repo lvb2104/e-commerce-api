@@ -2,10 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { CreateFlashsaleDto } from './dto/create-flashsale.dto';
 import { UpdateFlashsaleDto } from './dto/update-flashsale.dto';
 import { FlashsaleRepository } from './flashsales.repository';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class FlashsalesService {
-    constructor(private readonly flashsaleRepository: FlashsaleRepository) {}
+    constructor(
+        @InjectRepository(FlashsaleRepository)
+        private readonly flashsaleRepository: FlashsaleRepository,
+    ) {}
 
     create(createFlashsaleDto: CreateFlashsaleDto) {
         return 'This action adds a new flashsale';

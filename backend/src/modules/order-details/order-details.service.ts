@@ -2,10 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { CreateOrderDetailDto } from './dto/create-order-detail.dto';
 import { UpdateOrderDetailDto } from './dto/update-order-detail.dto';
 import { OrderDetailRepository } from './order-details.repository';
-
+import { InjectRepository } from '@nestjs/typeorm';
 @Injectable()
 export class OrderDetailsService {
     constructor(
+        @InjectRepository(OrderDetailRepository)
         private readonly orderDetailRepository: OrderDetailRepository,
     ) {}
 

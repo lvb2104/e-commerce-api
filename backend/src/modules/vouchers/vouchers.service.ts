@@ -2,10 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { CreateVoucherDto } from './dto/create-voucher.dto';
 import { UpdateVoucherDto } from './dto/update-voucher.dto';
 import { VoucherRepository } from './vouchers.repository';
-
+import { InjectRepository } from '@nestjs/typeorm';
 @Injectable()
 export class VouchersService {
-    constructor(private readonly voucherRepository: VoucherRepository) {}
+    constructor(
+        @InjectRepository(VoucherRepository)
+        private readonly voucherRepository: VoucherRepository,
+    ) {}
 
     create(createVoucherDto: CreateVoucherDto) {
         return 'This action adds a new voucher';
