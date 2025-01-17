@@ -18,8 +18,8 @@ export class Category extends BaseEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column('text')
-    title: string;
+    @Column('varchar', { length: 255, unique: true })
+    name: string;
 
     @Column({
         type: 'enum',
