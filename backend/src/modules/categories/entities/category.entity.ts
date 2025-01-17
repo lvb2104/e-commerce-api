@@ -18,7 +18,8 @@ export class Category extends BaseEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column('text')
+
+    @Column('varchar', { length: 255, unique: true })
     name: string;
 
     @Column({
