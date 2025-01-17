@@ -37,7 +37,9 @@
         </div>
         <!-- Modal button  -->
          <div class="cart-modal__buttons">
-          <div class="cart-modal__button slide_primary">Cart</div>
+          <div class="cart-modal__button slide_primary">
+            <router-link to="cart">Cart</router-link>
+          </div>
           <div class="cart-modal__button slide_primary">Checkout</div>
           <div class="cart-modal__button slide_primary">Comparison</div>
          </div>
@@ -68,9 +70,9 @@
           <RouterLink to="favorite" class="header_icon">
             <img src="../assets/icons/favourtite.svg" alt="" class="icon">
           </RouterLink>
-          <RouterLink to="cart" class="header_icon">
+          <div class="header_icon header_cart">
             <img src="../assets/icons/cart.svg" alt="" class="icon">
-          </RouterLink>
+          </div>
         </ul>
       </header>
     </div>

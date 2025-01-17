@@ -210,11 +210,12 @@ import "../assets/css/home/products.css"
   color: #000000;
   background: #F9F1E7;
   cursor: pointer;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 .square:hover {
   background: rgba(184, 142, 47, 0.7);
+  color: #fff;
 }
 
 .next {

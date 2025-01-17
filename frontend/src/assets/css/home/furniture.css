@@ -1,5 +1,8 @@
 /* FurnitureImgs */
 .furnitureImgs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 65px 0;
 }
 
