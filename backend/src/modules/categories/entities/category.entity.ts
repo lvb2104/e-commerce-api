@@ -19,7 +19,7 @@ export class Category extends BaseEntity {
     id: string;
 
     @Column('text')
-    title: string;
+    name: string;
 
     @Column({
         type: 'enum',

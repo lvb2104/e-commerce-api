@@ -2,11 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { CreateCategoryBannerDto } from './dto/create-category-banner.dto';
 import { UpdateCategoryBannerDto } from './dto/update-category-banner.dto';
 import { CategoryBannerRepository } from './category-banners.repository';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class CategoryBannersService {
     constructor(
-        private readonly CategoryBannerRepository: CategoryBannerRepository,
+        @InjectRepository(CategoryBannerRepository)
+        private readonly categoryBannerRepository: CategoryBannerRepository,
     ) {}
 
     create(createCategoryBannerDto: CreateCategoryBannerDto) {

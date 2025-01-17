@@ -2,10 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { CreateItemImageDto } from './dto/create-item-image.dto';
 import { UpdateItemImageDto } from './dto/update-item-image.dto';
 import { ItemImageRepository } from './item-images.repository';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ItemImagesService {
-    constructor(private readonly itemImageRepository: ItemImageRepository) {}
+    constructor(
+        @InjectRepository(ItemImageRepository)
+        private readonly itemImageRepository: ItemImageRepository,
+    ) {}
 
     create(createItemImageDto: CreateItemImageDto) {
         return 'This action adds a new itemImage';

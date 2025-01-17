@@ -42,6 +42,9 @@ export class Item extends BaseEntity {
     @Column('text', { nullable: true })
     description: string;
 
+    @Column('text')
+    avatar: string;
+
     @Column({
         type: 'enum',
         enum: ItemStatus,

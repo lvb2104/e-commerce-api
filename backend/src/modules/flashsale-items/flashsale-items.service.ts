@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { CreateFlashsaleItemDto } from './dto/create-flashsale-item.dto';
 import { UpdateFlashsaleItemDto } from './dto/update-flashsale-item.dto';
 import { FlashsaleItemRepository } from './flashsale-items.repository';
@@ -6,6 +7,7 @@ import { FlashsaleItemRepository } from './flashsale-items.repository';
 @Injectable()
 export class FlashsaleItemsService {
     constructor(
+        @InjectRepository(FlashsaleItemRepository)
         private readonly flashsaleItemRepository: FlashsaleItemRepository,
     ) {}
 
