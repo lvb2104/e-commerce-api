@@ -1,8 +1,14 @@
 <template>
   <div class="shop">
     <!-- Shop Top  -->
-    <div class="shop__inform d-flex align-items-center justify-content-center">
+    <div class="shop__inform d-flex flex-column align-items-center justify-content-center">
+      <img src="../assets/imgs/logo_2.png" alt="">
       <h1 class="shop__inform--title">Shop</h1>
+      <div class="navigation mt-2">
+        <p class="fw-bold">Home</p>
+        <img src="../assets/icons/right.svg" alt="">
+        <p>Shop</p>
+      </div>
     </div>
     <!-- Filter  -->
     <div class="filter">
@@ -68,47 +74,17 @@
           </div>
       </div> 
     </section>
-
-    <!-- Shop quality  -->
-     <section class="shop__quality">
-      <div class="shop__quality-container">
-        <img src="../assets/icons/champion.svg" alt="">
-        <div class="shop__quality-content">
-          <h3 class="shop__quality-title">High Quality</h3>
-          <p class="shop__quality-desc">crafted from top materials</p>
-        </div>
-      </div>
-      <div class="shop__quality-container">
-        <img src="../assets/icons/protection.svg" alt="">
-        <div class="shop__quality-content">
-          <h3 class="shop__quality-title">Warranty Protection</h3>
-          <p class="shop__quality-desc">Over 2 years</p>
-        </div>
-      </div>
-      <div class="shop__quality-container">
-        <img src="../assets/icons/shipping.svg" alt="">
-        <div class="shop__quality-content">
-          <h3 class="shop__quality-title">Free Shipping</h3>
-          <p class="shop__quality-desc">Order over 150 $</p>
-        </div>
-      </div>
-      <div class="shop__quality-container">
-        <img src="../assets/icons/support.svg" alt="">
-        <div class="shop__quality-content">
-          <h3 class="shop__quality-title">24 / 7 Support</h3>
-          <p class="shop__quality-desc">Dedicated support</p>
-        </div>
-      </div>
-     </section>
+    <!-- Shop Quality  -->
+     <ShopQuality />
   </div>
  
 </template>
 
 <script lang="ts" setup>
 import Product from '../components/Product.vue';
+import ShopQuality from '../components/Shop-Quality.vue';
 
-
-import "../assets/css/home-css/products.css"
+import "../assets/css/home/products.css"
 </script>
 
 <style scoped>
@@ -117,10 +93,28 @@ import "../assets/css/home-css/products.css"
   background: url("../assets/imgs/shop.png");
 }
 
+.shop__inform>img {
+  width: 70px;
+  height: 70px;
+  margin-bottom: -8px;
+}
+
 .shop__inform--title {
   font-size: 48px;
   font-weight: bold;
   color: #000000;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.navigation img {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) saturate(100%)
 }
 
 
@@ -194,7 +188,6 @@ import "../assets/css/home-css/products.css"
 }
 
 /* shop  */
-
 .shop__products {
   padding-top: 63px;
 }
@@ -231,37 +224,5 @@ import "../assets/css/home-css/products.css"
 .active {
   color: #fff;
   background: #B88E2F;
-}
-
-/* Shop quality  */
-.shop__quality {
-  padding: 100px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background: #FAF3EA;
-}
-
-.shop__quality-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.shop__quality-content {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.shop__quality-title {
-  font-size: 25px;
-  font-weight: 600;
-  color: #242424;
-}
-
-.shop__quality-desc {
-  font-size: 20px;
-  color: #898989;
 }
 </style>
