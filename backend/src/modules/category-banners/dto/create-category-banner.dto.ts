@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsNumber, IsUrl } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateCategoryBannerDto {
     @ApiProperty()
@@ -8,7 +8,7 @@ export class CreateCategoryBannerDto {
     position: number;
 
     @ApiProperty()
-    @IsUrl()
+    @IsString()
     @IsNotEmpty()
     url: string;
 }

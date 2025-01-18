@@ -14,6 +14,7 @@ import { ItemsModule } from './modules/items/items.module';
 import { ItemImagesModule } from './modules/item-images/item-images.module';
 import { CategoryBannersModule } from './modules/category-banners/category-banners.module';
 import { OrderDetailsModule } from './modules/order-details/order-details.module';
+import { UploadsModule } from './modules/uploads/uploads.module';
 
 @Module({
     imports: [
@@ -31,6 +32,7 @@ import { OrderDetailsModule } from './modules/order-details/order-details.module
         ItemImagesModule,
         CategoryBannersModule,
         OrderDetailsModule,
+        UploadsModule,
     ],
     controllers: [AppController],
     providers: [AppService],

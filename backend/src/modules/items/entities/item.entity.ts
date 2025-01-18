@@ -11,7 +11,7 @@ import { FlashsaleItem } from '../../flashsale-items/entities/flashsale-item.ent
 import { ItemImage } from '../../item-images/entities/item-image.entity';
 import { OrderDetail } from '../../order-details/entities/order-detail.entity';
 
-enum ItemStatus {
+export enum ItemStatus {
     Active,
     Inactive,
 }
@@ -24,7 +24,7 @@ export class Item extends BaseEntity {
     @Column('text')
     name: string;
 
-    @Column('text')
+    @Column('text', { nullable: true })
     barcode: string;
 
     @Column('float')

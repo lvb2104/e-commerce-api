@@ -1,6 +1,6 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateCategoryBannerDto } from './create-category-banner.dto';
-import { IsNumber, IsOptional, IsUrl } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateCategoryBannerDto extends PartialType(
@@ -12,7 +12,7 @@ export class UpdateCategoryBannerDto extends PartialType(
     position?: number;
 
     @ApiProperty()
-    @IsUrl()
+    @IsString()
     @IsOptional()
     url?: string;
 }
