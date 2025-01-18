@@ -21,7 +21,7 @@ export class UploadsController {
         @UploadedFile(
             new ParseFilePipe({
                 validators: [
-                    new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024 }), // 5MB
+                    new MaxFileSizeValidator({ maxSize: 15 * 1024 * 1024 }), // 15MB
                     new FileTypeValidator({
                         fileType: /image\/jpeg|image\/jpg|image\/png/,
                     }),
@@ -37,7 +37,16 @@ export class UploadsController {
     @Post('files')
     @UseInterceptors(FilesInterceptor('files', 20))
     async uploadFiles(
-        @UploadedFiles()
+        @UploadedFiles(
+            new ParseFilePipe({
+                validators: [
+                    new MaxFileSizeValidator({ maxSize: 15 * 1024 * 1024 }), // 15MB
+                    new FileTypeValidator({
+                        fileType: /image\/jpeg|image\/jpg|image\/png/,
+                    }),
+                ],
+            }),
+        )
         files: Express.Multer.File[],
     ) {
         const urls = await this.uploadsService.uploadFiles(files);

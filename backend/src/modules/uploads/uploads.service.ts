@@ -1,4 +1,8 @@
-import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import {
+    DeleteObjectCommand,
+    PutObjectCommand,
+    S3Client,
+} from '@aws-sdk/client-s3';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
@@ -22,33 +26,53 @@ export class UploadsService {
 
     async uploadFile(file: Express.Multer.File) {
         const randomName = `${Date.now()}-${file.originalname}`;
-        await this.s3Client.send(
-            new PutObjectCommand({
-                Bucket: this.bucketName,
-                Key: randomName,
-                Body: file.buffer,
-            }),
-        );
+        const command = new PutObjectCommand({
+            Bucket: this.bucketName,
+            Key: randomName,
+            Body: file.buffer,
+        });
+        await this.s3Client.send(command);
 
         return `https://${this.bucketName}.s3.${this.region}.amazonaws.com/${randomName}`;
     }
 
     async uploadFiles(files: Express.Multer.File[]) {
-        const urls = files.map((file) => {
-            const randomName = `${Date.now()}-${file.originalname}`;
-            return this.s3Client
-                .send(
+        const urls = await Promise.all(
+            files.map(async (file) => {
+                const randomName = `${Date.now()}-${file.originalname}`;
+                await this.s3Client.send(
                     new PutObjectCommand({
                         Bucket: this.bucketName,
                         Key: randomName,
                         Body: file.buffer,
                     }),
-                )
-                .then(
-                    () =>
-                        `https://${this.bucketName}.s3.${this.region}.amazonaws.com/${randomName}`,
                 );
+                return `https://${this.bucketName}.s3.${this.region}.amazonaws.com/${randomName}`;
+            }),
+        );
+        return urls;
+    }
+
+    async deleteFile(fileUrl: string) {
+        const key = fileUrl.split('/').pop();
+        const command = new DeleteObjectCommand({
+            Bucket: this.bucketName,
+            Key: key,
         });
-        return await Promise.all(urls);
+        await this.s3Client.send(command);
+    }
+
+    async deleteFiles(fileUrls: string[]) {
+        const keys = fileUrls.map((url) => url.split('/').pop());
+        const commands = keys.map(
+            (key) =>
+                new DeleteObjectCommand({
+                    Bucket: this.bucketName,
+                    Key: key,
+                }),
+        );
+        await Promise.all(
+            commands.map((command) => this.s3Client.send(command)),
+        );
     }
 }
