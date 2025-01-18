@@ -1,50 +1,53 @@
 <template>
   <div>
     <!-- Cart Modal  -->
-    <div v-if="false" class="cart-modal">
-      <div class="cart-modal__container">
-        <!-- Modal Top  -->
-        <div class="cart-modal__top">
-          <h3 class="cart-modal__top-title">Shopping Cart</h3>
-          <div class="cart-modal__top-close">
-            <img src="../assets/icons/cart-close.svg" alt="">
-          </div>
-        </div>
-        <div class="line" style="width: 80%;"></div>
-        <!-- Modal content  -->
-        <div class="cart-modal__content">
-          <div class="cart-modal__product">
-            <div class="cart-modal__product--left">
-              <img src="../assets/imgs/single-product__img-1.png" alt="">
+     <transition>
+      <div v-if="isToggleCart" class="cart-modal">
+        <div class="cart-modal__container">
+          <!-- Modal Top  -->
+          <div class="cart-modal__top">
+            <h3 class="cart-modal__top-title">Shopping Cart</h3>
+            <div @click="toggleCart" class="cart-modal__top-close">
+              <img src="../assets/icons/cart-close.svg" alt="">
             </div>
-            <div class="cart-modal__product--right">
-              <div class="cart-modal__product-name">Asgaard sofa</div>
-              <div class="cart-modal__product-price">
-                <span class="amount">1</span>
-                <span style="font-size: 16px; margin-bottom: 2px;">x</span>
-                <span class="price">Rs. 250,000.00</span>
+          </div>
+          <div class="line" style="width: 80%;"></div>
+          <!-- Modal content  -->
+          <div class="cart-modal__content">
+            <div class="cart-modal__product">
+              <div class="cart-modal__product--left">
+                <img src="../assets/imgs/single-product__img-1.png" alt="">
+              </div>
+              <div class="cart-modal__product--right">
+                <div class="cart-modal__product-name">Asgaard sofa</div>
+                <div class="cart-modal__product-price">
+                  <span class="amount">1</span>
+                  <span style="font-size: 16px; margin-bottom: 2px;">x</span>
+                  <span class="price">Rs. 250,000.00</span>
+                </div>
+              </div>
+              <div class="cart-modal__product-delete">
+                <img src="../assets/icons/delete.svg" alt="">
               </div>
             </div>
-            <div class="cart-modal__product-delete">
-              <img src="../assets/icons/delete.svg" alt="">
+          </div>
+          <!-- Modal Total  -->
+          <div class="cart-modal__total">
+            <span style="font-size: 16px; font-weight: bold;">Subtotal</span>
+            <span class="cart-modal__total-price">Rs. 520,000.00</span>
+          </div>
+          <!-- Modal button  -->
+          <div class="cart-modal__buttons">
+            <div class="cart-modal__button slide_primary">
+              <router-link to="cart">Cart</router-link>
             </div>
+            <div class="cart-modal__button slide_primary">Checkout</div>
+            <div class="cart-modal__button slide_primary">Comparison</div>
           </div>
         </div>
-        <!-- Modal Total  -->
-        <div class="cart-modal__total">
-          <span style="font-size: 16px; font-weight: bold;">Subtotal</span>
-          <span class="cart-modal__total-price">Rs. 520,000.00</span>
-        </div>
-        <!-- Modal button  -->
-         <div class="cart-modal__buttons">
-          <div class="cart-modal__button slide_primary">
-            <router-link to="cart">Cart</router-link>
-          </div>
-          <div class="cart-modal__button slide_primary">Checkout</div>
-          <div class="cart-modal__button slide_primary">Comparison</div>
-         </div>
-      </div>
     </div>
+     </transition>
+    
     <!-- Header  -->
     <div class="container">
       <header id="header" class="header">
@@ -70,7 +73,7 @@
           <RouterLink to="favorite" class="header_icon">
             <img src="../assets/icons/favourtite.svg" alt="" class="icon">
           </RouterLink>
-          <div class="header_icon header_cart">
+          <div @click="toggleCart" class="header_icon header_cart">
             <img src="../assets/icons/cart.svg" alt="" class="icon">
           </div>
         </ul>
@@ -79,8 +82,16 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
+import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
+
+const isToggleCart = ref(false)
+
+function toggleCart() {
+    isToggleCart.value = !isToggleCart.value
+}
+
 </script>
 
 <style scoped>
@@ -140,6 +151,16 @@ import { RouterLink } from 'vue-router';
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 
 .cart-modal__container {
