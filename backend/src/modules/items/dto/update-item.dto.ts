@@ -1,10 +1,11 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { CreateItemDto } from './create-item.dto';
 import {
+    IsBoolean,
+    IsEnum,
     IsNumber,
     IsOptional,
     IsString,
-    IsUrl,
     MinLength,
 } from 'class-validator';
 import { ItemStatus } from '../entities/item.entity';
@@ -14,52 +15,50 @@ export class UpdateItemDto extends PartialType(CreateItemDto) {
     @ApiProperty()
     @IsOptional()
     @MinLength(1)
-    name: string;
+    name?: string;
 
     @IsString()
     @ApiProperty()
     @IsOptional()
-    barcode: string;
+    barcode?: string;
 
     @IsNumber()
     @ApiProperty()
     @IsOptional()
-    importPrice: number;
+    importPrice?: number;
 
     @IsNumber()
     @ApiProperty()
     @IsOptional()
-    price: number;
+    price?: number;
 
     @IsNumber()
     @ApiProperty()
     @IsOptional()
-    weight: number;
+    weight?: number;
 
     @IsNumber()
     @ApiProperty()
     @IsOptional()
-    quantity: number;
+    quantity?: number;
 
     @IsString()
     @ApiProperty()
     @IsOptional()
-    description: string;
+    description?: string;
 
-    @IsUrl()
+    // @IsUrl()
+    // @ApiProperty()
+    // @IsNotEmpty()
+    // avatar: string;
+
+    @IsEnum(ItemStatus)
     @ApiProperty()
     @IsOptional()
-    avatar: string;
+    status?: ItemStatus;
 
+    @IsBoolean()
     @ApiProperty()
     @IsOptional()
-    status: ItemStatus;
-
-    @ApiProperty()
-    @IsOptional()
-    isSale: boolean;
-
-    @ApiProperty()
-    @IsOptional()
-    categoryId: string;
+    isSale?: boolean;
 }

@@ -5,7 +5,6 @@ import {
     IsNumber,
     IsOptional,
     IsString,
-    IsUrl,
     MinLength,
 } from 'class-validator';
 import { ItemStatus } from '../entities/item.entity';
@@ -21,7 +20,7 @@ export class CreateItemDto {
     @IsString()
     @ApiProperty()
     @IsOptional()
-    barcode: string;
+    barcode?: string;
 
     @IsNumber()
     @ApiProperty()
@@ -46,7 +45,7 @@ export class CreateItemDto {
     @IsString()
     @ApiProperty()
     @IsOptional()
-    description: string;
+    description?: string;
 
     // @IsUrl()
     // @ApiProperty()
@@ -61,5 +60,5 @@ export class CreateItemDto {
     @IsBoolean()
     @ApiProperty()
     @IsOptional()
-    isSale: boolean;
+    isSale?: boolean;
 }

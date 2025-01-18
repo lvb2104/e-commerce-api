@@ -11,10 +11,13 @@ export class CategoriesService {
         private readonly categoryRepository: CategoryRepository,
     ) {}
 
-    async create(createCategoryDto: CreateCategoryDto) {}
+    async create(createCategoryDto: CreateCategoryDto) {
+        const newCategory = this.categoryRepository.create(createCategoryDto);
+        return this.categoryRepository.save(newCategory);
+    }
 
-    async findAll() {
-        return await this.categoryRepository.find();
+    findAll() {
+        return this.categoryRepository.find();
     }
 
     async findOne(id: string) {
