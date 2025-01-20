@@ -38,10 +38,10 @@
           </div>
           <!-- Modal button  -->
           <div class="cart-modal__buttons">
-            <div class="cart-modal__button slide_primary">
-              <router-link to="cart">Cart</router-link>
+            <div @click="goToCartPage" class="cart-modal__button slide_primary">
+              <div>Cart</div>
             </div>
-            <div class="cart-modal__button slide_primary">Checkout</div>
+            <div @click="goToCheckoutPage" class="cart-modal__button slide_primary">Checkout</div>
             <div class="cart-modal__button slide_primary">Comparison</div>
           </div>
         </div>
@@ -84,12 +84,25 @@
 
 <script setup>
 import { ref } from 'vue';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
+
+
+const router = useRouter()
 
 const isToggleCart = ref(false)
 
 function toggleCart() {
     isToggleCart.value = !isToggleCart.value
+}
+
+function goToCartPage() {
+  isToggleCart.value = false
+  router.push('/cart')
+}
+
+function goToCheckoutPage() {
+  isToggleCart.value = false
+  router.push('/checkout')
 }
 
 </script>

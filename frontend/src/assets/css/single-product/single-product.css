@@ -19,14 +19,14 @@
   background: #F9F1E7;
   width: 76px;
   height: 80px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 10px;
 }
 
 .single-product__img-view {
   width: 423px;
   height: 500px;
-  object-fit: contain;
+  object-fit: cover;
   background: #F9F1E7;
   border-radius: 5px;
 }
