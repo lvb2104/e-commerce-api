@@ -2,7 +2,7 @@
   <div class="product__container">
     <!-- Modal  -->
     <div class="product__modal">
-      <RouterLink to="single-product" class="product__modal--btn slide text-center">Add to cart</RouterLink>
+      <div @click="goToSingleProductPage(item.id)" class="product__modal--btn slide text-center">Add to cart</div>
       <div class="product__modal--row">
         <div class="product__modal-block">
           <img src="../assets/icons/share.svg" alt="">
@@ -19,22 +19,37 @@
       </div>
     </div>
     <!-- Sale / Noftification -->
-    <div class="discount d-flex justify-content-center align-items-center">-30%</div>
-    <div class="product__new--notification d-flex justify-content-center align-items-center">New</div>
+    <div v-if="item.isSale" class="discount d-flex justify-content-center align-items-center">-30%</div>
+    <!-- <div class="product__new--notification d-flex justify-content-center align-items-center">New</div> -->
     <!-- Product  -->
-    <img src="../assets/imgs/product_img.png" alt="" class="product__img">
+    <img :src="item.avatar" alt="" class="product__img">
     <div class="product__content">
-      <h3 class="product__name">Syltherine</h3>
-      <p class="product__desc">Stylish cafe chair</p>
+      <h3 class="product__name">{{ item.name }}</h3>
+      <p class="product__desc">{{ item.description }}</p>
       <div class="product__price">
-        <span class="product__price--view">Rp 2.500.000</span>
-        <span class="product__price--root">Rp 3.500.000</span>
+        <span class="product__price--view">{{ item.price }} VND</span>
+        <span class="product__price--root">{{ item.importPrice }} VND</span>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
+
+defineProps({
+  item: {
+    type: Object,
+    required: true
+  }
+}) 
+const router = useRouter()
+
+// Logic Go to Single Product
+function goToSingleProductPage(id) {
+  router.push({ name: "single-product", params: { id }})
+}
+
 
 </script>
 
@@ -51,8 +66,8 @@
 
 .product__img {
   width: 100%;
-  height: auto;
-  object-fit: contain;
+  height: 301px;
+  object-fit: cover;
 }
 
 .product__content {

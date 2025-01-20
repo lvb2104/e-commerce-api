@@ -39,29 +39,8 @@
     <section class="shop__products products">
       <div class="container">
           <div class="row row-cols-4 gy-5 ">
-            <div class="col">
-              <Product />
-            </div>
-            <div class="col">
-              <Product />
-            </div>
-            <div class="col">
-              <Product />
-            </div>
-            <div class="col">
-              <Product />
-            </div>
-            <div class="col">
-              <Product />
-            </div>
-            <div class="col">
-              <Product />
-            </div>
-            <div class="col">
-              <Product />
-            </div>
-            <div class="col">
-              <Product />
+            <div v-for="item in items" :key="item.id" class="col">
+              <Product :item="item" />
             </div>
           </div>
           <div class="d-flex justify-content-center">
@@ -80,11 +59,16 @@
  
 </template>
 
-<script lang="ts" setup>
+<script setup>
+
 import Product from '../components/Product.vue';
 import ShopQuality from '../components/Shop-Quality.vue';
 
 import "../assets/css/home/products.css"
+import { inject } from 'vue';
+
+// Inject items 
+const items = inject("items")
 </script>
 
 <style scoped>

@@ -25,7 +25,7 @@ const router = createRouter({
       component: () => import('../views/Contact.vue'),
     },
     {
-      path: '/single-product',
+      path: '/single-product/:id',
       name: 'single-product',
       component: () => import('../views/Single-Product.vue'),
     },
@@ -43,6 +43,11 @@ const router = createRouter({
       path: '/blog',
       name: 'Blog',
       component: () => import('../views/Blog.vue'),
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'Error',
+      component: () => import('../views/ErrorPage.vue'),
     },
   ],
 })

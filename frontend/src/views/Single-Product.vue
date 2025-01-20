@@ -8,26 +8,26 @@
         <div class="navigation__name">Shop</div>
         <img src="../assets/icons/right.svg" alt="">
         <div class="separate"></div>
-        <div class="navigation__name-of-product">Asgaard sofa</div>
+        <div class="navigation__name-of-product">{{ item.name }}</div>
       </div>
     </div>
     <!-- Single Product Content  -->
     <div class="container">
-      <div class="single-product__content">
+      <div class="single-product__content"> 
         <!-- Single Product Left  -->
         <div class="single-product__content-left">
           <div class="single-product__imgs-small">
-            <img src="../assets/imgs/single-product__img-1.png" alt="" class="single-product__img-small">
-            <img src="../assets/imgs/single-product__img-2.png" alt="" class="single-product__img-small">
-            <img src="../assets/imgs/single-product__img-3.png" alt="" class="single-product__img-small">
-            <img src="../assets/imgs/single-product__img-4.png" alt="" class="single-product__img-small">
+            <img :src="item.avatar" alt="" class="single-product__img-small">
+            <img :src="item.avatar" alt="" class="single-product__img-small">
+            <img :src="item.avatar" alt="" class="single-product__img-small">
+            <img :src="item.avatar" alt="" class="single-product__img-small">
           </div>
-          <img src="../assets/imgs/single-product__img-view.png" class="single-product__img-view">
+          <img :src="item.avatar" class="single-product__img-view">
         </div>
         <!-- Single Product Right  -->
         <div class="single-product__content-right">
-          <h1 class="single-product__name">Asgaard sofa</h1>
-          <h3 class="single-product__price">Rs. 250,000.00</h3>
+          <h1 class="single-product__name">{{ item.name }}</h1>
+          <h3 class="single-product__price">{{ item.price }} VND </h3>
           <div class="single-product__judge">
             <div class="single-product__jusdge-stars">
               <img src="../assets/icons/star.svg" alt="" class="star">
@@ -111,8 +111,8 @@
                 <p>Embodying the raw, wayward spirit of rock ‘n’ roll, the Kilburn portable active stereo speaker takes the unmistakable look and sound of Marshall, unplugs the chords, and takes the show on the road.</p>
                 <p>Weighing in under 7 pounds, the Kilburn is a lightweight piece of vintage styled engineering. Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound that is both articulate and pronounced. The analogue knobs allow you to fine tune the controls to your personal preferences while the guitar-influenced leather strap enables easy and stylish travel.</p>
                 <div class="single-product__information--desc-imgs">
-                  <img src="../assets/imgs/single-product__desc--img.png" alt="">
-                  <img src="../assets/imgs/single-product__desc--img.png" alt="">
+                  <img :src="item.avatar" alt="">
+                  <img :src="item.avatar" alt="">
                 </div>
               </div>
               <div v-if="false" class="single-product__information--addInformation">
@@ -132,13 +132,13 @@
             <h2 class="related-products__top--title">Related Products</h2>
           </div>
           <div class="row row-cols-4 gy-4">
-            <div class="col">
-              <Product />
+            <div v-for="item in items.slice(0,4)" :key="item.id" class="col">
+              <Product :item="item" />
             </div>
           </div>
           <div class="related-products__button d-flex justify-content-center">
             <div class="related-products__show-more text-center">
-              <router-link to="shop">Show More</router-link>
+              <div @click="goToShopPage">Show More</div>
             </div>
           </div>
       </div> 
@@ -153,7 +153,36 @@ import "../assets/css/single-product/navigation.css"
 import "../assets/css/single-product/related-product.css"
 import "../assets/css/single-product/single-product-information.css"
 import "../assets/css/single-product/single-product.css"
+import { useRoute, useRouter } from 'vue-router';
+import axios from 'axios';
+import { inject, onMounted, ref } from 'vue';
 
+
+const route = useRoute()
+const router = useRouter()
+const itemId = route.params.id
+const item = ref(null)
+const items = inject("items")
+
+// Call API Item 
+const getItem = async () => {
+  try {
+    const res = await axios.get("http://localhost:3001/items/" + itemId)
+    item.value = res.data
+  }
+  catch(err) {
+    console.log(err)
+  }
+}
+
+getItem()
+
+
+// Fuction 
+const goToShopPage = async () => {
+  await router.push("/shop")
+  window.location.reload()
+}
 </script>
 
 <style scoped>
