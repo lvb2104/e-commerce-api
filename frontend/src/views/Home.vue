@@ -78,17 +78,25 @@
                   <img :src="image.image" class="preview__slide-img" :class="{active: i === index}" alt="" ref="imgs">
                 </div>
               </div>
-              <div v-for="(image, i) in extendedImage" :key="image.id" class="preview__slide--content" :class="{active: i === index}">
-                    <div @click="moveSlide()" class="button__next">
-                      <img src="../assets/icons/arrow-right.svg" alt="">
-                    </div>
-                    <p class="preview__slie--content-name d-flex align-items-center">
-                      {{ image.id }} <span class="line"></span> {{ image.name }}
-                    </p>
-                    <p class="preview__slie--content-desc">{{ image.description }}</p>
+                <div>
+                  <div v-for="(image, i) in extendedImage" :key="image.id" class="preview__slide--content" :class="{active: i === index}">
+                    <transition name="slide-left">
+                      <div v-show="i === index" class="preview__slide--content-container">
+                        <p class="preview__slie--content-name d-flex align-items-center">
+                          {{ image.id }} <span class="line"></span> {{ image.name }}
+                        </p>
+                        <p class="preview__slie--content-desc">{{ image.description }}</p>
+                      </div>
+                    </transition>   
+                    <transition name="slide-right">
+                      <div @click="moveSlide()" class="button__next" v-show="i === index">
+                        <img src="../assets/icons/arrow-right.svg" alt="">
+                      </div>
+                    </transition>
+                  </div>
               </div>
               <div class="next__preview-img">
-                  <span v-for="(n, i) in Array(4).fill(0)" :key="i" :class="{current: i === index}" class="round"></span>
+                  <span @click="goToSlide(i)" v-for="(n, i) in Array(4).fill(0)" :key="i" :class="{current: i === index}" class="round"></span>
               </div>
             </div>
           </div>
@@ -178,8 +186,13 @@ const images = reactive([
 const index = ref(0)
 const extendedImage = computed(() => [...images, ...images])
 
+const goToSlide = (i) => {
+  index.value = i
+  const width = imgs.value[0].offsetWidth
+  listImage.value.style.transform = `translateX(${(width * -1 * index.value) - (24 * index.value)}px)`
+}
 
-const moveSlide= () => {
+const moveSlide = () => {
   slideShow()
 }
 
@@ -204,7 +217,46 @@ onMounted(() => {
 </script>
 
 <style scoped>
+/* Slide left  */
+.slide-left-enter-active, .slide-left-leave-active {
+  transition: all 0.5s ease;
+}
+.slide-left-enter-from {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+.slide-left-enter-to {
+  transform: translateX(0);
+  opacity: 1;
+}
+.slide-left-leave-from {
+  transform: translateX(0);
+  opacity: 1;
+}
+.slide-left-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
+}
 
-
+/* Slide Right  */
+.slide-right-enter-active, .slide-right-leave-active {
+  transition: all 0.5s ease;
+}
+.slide-right-enter-from {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.slide-right-enter-to {
+  transform: translateX(0);
+  opacity: 1;
+}
+.slide-right-leave-from {
+  transform: translateX(0);
+  opacity: 1;
+}
+.slide-right-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
+}
 
 </style>
