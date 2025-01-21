@@ -102,24 +102,15 @@
        <div class="container">
          <div class="single-product__information">
             <div class="single-product__information-title">
-              <h3 class="active">Description</h3>
-              <h3>Additional Information</h3>
-              <h3>Reviews <span class="amount-of-review">[5]</span></h3>
+              <h3 @click="setActiveTab(index)" v-for="(tab,index) in tabs" :key="tab.label" :class="{active: index === activeTab}">{{ tab.label }} <span v-if="index == 2" class="amount-of-review">[5]</span></h3>
             </div>
             <div class="single-product__information-content">
-              <div class="single-product__information--desc">
-                <p>Embodying the raw, wayward spirit of rock ‘n’ roll, the Kilburn portable active stereo speaker takes the unmistakable look and sound of Marshall, unplugs the chords, and takes the show on the road.</p>
-                <p>Weighing in under 7 pounds, the Kilburn is a lightweight piece of vintage styled engineering. Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound that is both articulate and pronounced. The analogue knobs allow you to fine tune the controls to your personal preferences while the guitar-influenced leather strap enables easy and stylish travel.</p>
+              <div v-for="(tab,index) in tabs" v-show="index === activeTab" :key="tab.label" class="single-product__information--desc">
+                <p>{{ tab.content }}</p>
                 <div class="single-product__information--desc-imgs">
                   <img :src="item.avatar" alt="">
                   <img :src="item.avatar" alt="">
                 </div>
-              </div>
-              <div v-if="false" class="single-product__information--addInformation">
-                <p>Cat</p>
-              </div>
-              <div v-if="false" class="single-product__information--review">
-                <p>Cat2</p>
               </div>
             </div>
          </div>
@@ -155,7 +146,7 @@ import "../assets/css/single-product/single-product-information.css"
 import "../assets/css/single-product/single-product.css"
 import { useRoute, useRouter } from 'vue-router';
 import axios from 'axios';
-import { inject, onMounted, ref } from 'vue';
+import { inject, onBeforeMount, ref } from 'vue';
 
 
 const route = useRoute()
@@ -175,7 +166,12 @@ const getItem = async () => {
   }
 }
 
-getItem()
+const activeTab = ref(0)
+const tabs = ref([
+  { label: "Description", content: "This is the description content." },
+  { label: "Additional Information", content: "This is additional information content." },
+  { label: "Reviews", content: "This is the reviews content." }
+]);
 
 
 // Fuction 
@@ -183,6 +179,17 @@ const goToShopPage = async () => {
   await router.push("/shop")
   window.location.reload()
 }
+
+const setActiveTab = (index) => {
+  activeTab.value = index
+}
+
+
+
+onBeforeMount(() => {
+  getItem()
+})
+
 </script>
 
 <style scoped>

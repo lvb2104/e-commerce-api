@@ -73,19 +73,19 @@
           <div class="preview__right">
             <!-- Slide main  -->
             <div class="preview__slide--main">
-              <div class="list-images" ref="listImage">
-                <div v-for="(image, i) in images" :key="image.id" >
+              <div class="list-images" ref="listImage" >
+                <div v-for="(image, i) in extendedImage" :key="image.id" >
                   <img :src="image.image" class="preview__slide-img" :class="{active: i === index}" alt="" ref="imgs">
-                  <div class="preview__slide--content" :class="{active: i === index}">
-                    <div class="button__next">
+                </div>
+              </div>
+              <div v-for="(image, i) in extendedImage" :key="image.id" class="preview__slide--content" :class="{active: i === index}">
+                    <div @click="moveSlide()" class="button__next">
                       <img src="../assets/icons/arrow-right.svg" alt="">
                     </div>
                     <p class="preview__slie--content-name d-flex align-items-center">
                       {{ image.id }} <span class="line"></span> {{ image.name }}
                     </p>
                     <p class="preview__slie--content-desc">{{ image.description }}</p>
-                  </div>
-                </div>
               </div>
               <div class="next__preview-img">
                   <span v-for="(n, i) in Array(4).fill(0)" :key="i" :class="{current: i === index}" class="round"></span>
@@ -133,7 +133,7 @@
 
 <script setup>
 import { RouterLink } from 'vue-router';
-import { inject, onMounted, reactive, ref, useTemplateRef } from 'vue';
+import { computed, inject, onMounted, reactive, ref } from 'vue';
 import Product from '../components/Product.vue';
 
 // Css file
@@ -175,26 +175,30 @@ const images = reactive([
   }
 ])
 
-let index = ref(0)
+const index = ref(0)
+const extendedImage = computed(() => [...images, ...images])
+
+
+const moveSlide= () => {
+  slideShow()
+}
 
 // Logic SlideShow 
 function slideShow() {
-  setInterval(() => {
     if (index.value == images.length - 1) {
       index.value = 0
       const width = imgs.value[0].offsetWidth
       listImage.value.style.transform = `translateX(0px)`
+      isTransitioning.value = false
     } else {
       index.value ++
       const width = imgs.value[0].offsetWidth
       listImage.value.style.transform = `translateX(${(width * -1 * index.value) - (24 * index.value)}px)`
-      console.log(listImage.value.style.transform)
     }
-  }, 4000)
 }
 
 onMounted(() => {
-  slideShow()
+  setInterval(slideShow, 6000)
 })
 
 </script>
