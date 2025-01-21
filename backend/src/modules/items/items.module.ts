@@ -5,12 +5,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ItemRepository } from './items.repository';
 import { Item } from './entities/item.entity';
 import { CategoriesModule } from '../categories/categories.module';
-import { ItemImageRepository } from '../item-images/item-images.repository';
+import { ItemImageRepository } from './item-images.repository';
 import { UploadsModule } from '../uploads/uploads.module';
+import { ItemImage } from './entities/item-image.entity';
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([Item]),
+        TypeOrmModule.forFeature([Item, ItemImage]),
         CategoriesModule,
         UploadsModule,
     ],

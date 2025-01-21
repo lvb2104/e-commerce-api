@@ -11,7 +11,6 @@ import { CategoriesModule } from './modules/categories/categories.module';
 import { FlashsalesModule } from './modules/flashsales/flashsales.module';
 import { FlashsaleItemsModule } from './modules/flashsale-items/flashsale-items.module';
 import { ItemsModule } from './modules/items/items.module';
-import { ItemImagesModule } from './modules/item-images/item-images.module';
 import { CategoryBannersModule } from './modules/category-banners/category-banners.module';
 import { OrderDetailsModule } from './modules/order-details/order-details.module';
 import { UploadsModule } from './modules/uploads/uploads.module';
@@ -29,7 +28,6 @@ import { UploadsModule } from './modules/uploads/uploads.module';
         FlashsalesModule,
         FlashsaleItemsModule,
         ItemsModule,
-        ItemImagesModule,
         CategoryBannersModule,
         OrderDetailsModule,
         UploadsModule,
