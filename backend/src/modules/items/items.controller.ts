@@ -61,6 +61,16 @@ export class ItemsController {
         return this.itemsService.create(createItemDto, categoryId, files);
     }
 
+    @Get('item-images')
+    findAllItemImages() {
+        return this.itemsService.findAllItemImages();
+    }
+
+    @Get('item-images/:id')
+    findOneItemImages(@Param('id') id: string) {
+        return this.itemsService.findOneItemImages(id);
+    }
+
     @Get()
     findAll() {
         return this.itemsService.findAll();
@@ -74,7 +84,6 @@ export class ItemsController {
     @Patch(':id')
     @UseInterceptors(FileInterceptor('avatar'))
     async update(
-        // @Param('categoryId') categoryId: string,
         @Param('id') itemId: string,
         @Body() updateItemDto: UpdateItemDto,
         @UploadedFile(

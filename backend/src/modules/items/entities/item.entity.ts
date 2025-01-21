@@ -8,8 +8,8 @@ import {
 } from 'typeorm';
 import { Category } from '../../categories/entities/category.entity';
 import { FlashsaleItem } from '../../flashsale-items/entities/flashsale-item.entity';
-import { ItemImage } from '../../item-images/entities/item-image.entity';
 import { OrderDetail } from '../../order-details/entities/order-detail.entity';
+import { ItemImage } from './item-image.entity';
 
 export enum ItemStatus {
     Active,
