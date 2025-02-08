@@ -19,4 +19,9 @@ export class CreateCategoryDto {
     @IsEnum(CategoryStatus)
     @IsOptional()
     readonly status?: CategoryStatus;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    url: string;
 }

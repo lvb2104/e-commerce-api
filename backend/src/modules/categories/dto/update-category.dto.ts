@@ -14,4 +14,9 @@ export class UpdateCategoryDto extends PartialType(CreateCategoryDto) {
     @IsEnum(CategoryStatus)
     @IsOptional()
     readonly status?: CategoryStatus;
+
+    @ApiProperty()
+    @IsString()
+    @IsOptional()
+    url?: string;
 }

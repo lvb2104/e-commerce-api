@@ -5,7 +5,6 @@ import {
     OneToMany,
     PrimaryGeneratedColumn,
 } from 'typeorm';
-import { CategoryBanner } from '../../category-banners/entities/category-banner.entity';
 import { Item } from '../../items/entities/item.entity';
 
 export enum CategoryStatus {
@@ -28,6 +27,9 @@ export class Category extends BaseEntity {
     })
     status: CategoryStatus;
 
+    @Column('text')
+    url: string;
+
     @Column({
         type: 'timestamp',
         default: () => 'CURRENT_TIMESTAMP',
@@ -40,12 +42,6 @@ export class Category extends BaseEntity {
         onUpdate: 'CURRENT_TIMESTAMP',
     })
     modified_at: Date;
-
-    @OneToMany(
-        (type) => CategoryBanner,
-        (categoryBanner) => categoryBanner.category,
-    )
-    categoryBanners: CategoryBanner[];
 
     @OneToMany((type) => Item, (item) => item.category)
     items: Item[];
